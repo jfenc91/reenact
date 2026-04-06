@@ -383,6 +383,11 @@ export async function runScript(
     headless,
     slowMo,
     args: [
+      // Use real GPU via Vulkan when available, fall back to SwiftShader
+      "--use-gl=angle",
+      "--use-angle=vulkan",
+      "--enable-features=Vulkan,VulkanFromANGLE",
+      "--ignore-gpu-blocklist",
       "--enable-webgl",
       "--enable-webgl2-compute-context",
       "--enable-accelerated-2d-canvas",
