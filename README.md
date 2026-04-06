@@ -80,6 +80,38 @@ Top-level YAML keys that configure the recording environment.
 | `--headed` | Show the browser window while recording |
 | `--slow-mo <ms>` | Add extra delay to every Playwright action |
 
+## Use with Claude Code skills
+
+You can use reenact inside a [Claude Code skill](https://docs.anthropic.com/en/docs/claude-code) to automatically record and share UI demos. For example, a PR review skill that records the changes and posts the video as a comment.
+
+Create a `.reenact/demo.yaml` in your repo to define a demo script:
+
+```yaml
+url: http://localhost:3000
+viewport:
+  width: 1280
+  height: 720
+steps:
+  - wait: 1s
+  - click: ".new-feature-button"
+  - wait: 2s
+  - scroll: down
+```
+
+Then in your skill, run:
+
+```bash
+reenact .reenact/demo.yaml -o demo.mp4
+gh pr comment $PR_NUMBER --body "## Demo
+
+$(cat <<'BODY'
+Here is a recording of the changes:
+BODY
+)"
+```
+
+See [examples/skills/pr-demo.md](examples/skills/pr-demo.md) for a full PR demo skill.
+
 ## License
 
 MIT
