@@ -4,7 +4,7 @@
 
 Create videos of human-like web UI navigation from YAML scripts.
 
-[Website](https://reenact.dev)
+[Website](https://jfenc91.github.io/reenact/)
 
 ## Install
 
