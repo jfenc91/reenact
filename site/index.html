@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reenact — Reenact human UI interactions as video</title>
+  <meta name="description" content="Create videos of human-like web UI navigation from YAML scripts. Powered by Playwright.">
+  <meta property="og:title" content="reenact — Reenact human UI interactions as video">
+  <meta property="og:description" content="Write a YAML script. Get a video of a real browser navigating your app with natural mouse movements, realistic typing, and smooth scrolling.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="reenact — Reenact human UI interactions as video">
+  <meta name="twitter:description" content="Write a YAML script. Get a video of a real browser navigating your app with natural mouse movements, realistic typing, and smooth scrolling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">&#9654;</span> reenact
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#examples">Examples</a>
+        <a href="#actions">Actions</a>
+        <a href="https://github.com/jeff/uivid" class="btn btn-sm" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Open source CLI tool</div>
+    <h1>Reenact UI flows<br>that look <em>human</em>.</h1>
+    <p class="hero-sub">
+      Write a YAML script. Get a video of a real browser navigating your app — with natural mouse
+      movements, realistic typing, and smooth scrolling. No screen recorder, no editing, no actor.
+    </p>
+    <div class="hero-actions">
+      <div class="install-cmd" onclick="navigator.clipboard.writeText('npm install -g reenact')">
+        <code>npm install -g reenact</code>
+        <span class="copy-hint">click to copy</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">terminal</span>
+        </div>
+        <pre class="terminal-body"><span class="t-prompt">$</span> reenact examples/login_flow.yaml -o demo.webm
+
+<span class="t-info">Running 9 steps...</span>
+<span class="t-step"> ✓</span> navigate → the-internet.herokuapp.com/login
+<span class="t-step"> ✓</span> type → #username <span class="t-dim">"tomsmith" @ 65 wpm</span>
+<span class="t-step"> ✓</span> type → #password <span class="t-dim">"SuperSecret..." @ 55 wpm</span>
+<span class="t-step"> ✓</span> click → button[type='submit']
+<span class="t-step"> ✓</span> wait → 2s
+<span class="t-step"> ✓</span> scroll → down
+<span class="t-success">Video saved to demo.webm</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="section-title">Why reenact?</h2>
+      <p class="section-sub">Screen recorders capture pixels. reenact captures <strong>intent</strong> — and reenacts it perfectly every time.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3.5-3.5 5-6 5-10"/><path d="M8 7c4 4 8 6 13 6"/><circle cx="21" cy="13" r="1.5"/><circle cx="3" cy="17" r="1.5"/></svg></div>
+          <h3>Bezier mouse curves</h3>
+          <p>Mouse movements follow cubic Bezier curves with randomized control points. Every recording looks natural, never robotic.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M6 16h12"/></svg></div>
+          <h3>Natural typing</h3>
+          <p>Characters appear at a realistic WPM with variable delay per keystroke, pauses between words, and occasional micro-hesitations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 7l4-4 4 4"/><path d="M8 17l4 4 4-4"/></svg></div>
+          <h3>Smooth scrolling</h3>
+          <p>Scroll events are broken into incremental steps with jitter — mimicking how a human uses a trackpad or mouse wheel.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><circle cx="12" cy="10" r="2"/><path d="M7 10l3 0"/><path d="M14 10l3 0"/></svg></div>
+          <h3>Real browser video</h3>
+          <p>Powered by Playwright's Chromium. The output is a real WebM video of an actual browser rendering your page — not a simulation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+          <h3>Single command</h3>
+          <p>One command to install: <code>npm&nbsp;i&nbsp;-g&nbsp;reenact</code>. Chromium downloads automatically. Zero config.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 01-4 4H3"/></svg></div>
+          <h3>Reproducible</h3>
+          <p>YAML scripts are version-controlled, diffable, and repeatable. Re-record after a redesign in seconds, not hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-alt" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Write a YAML script</h3>
+          <p>Describe the navigation flow in plain YAML — what to click, type, scroll, and wait for. No code, no test framework.</p>
+        </div>
+        <div class="step-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>reenact drives a real browser</h3>
+          <p>Playwright launches headless Chromium. Each step is executed with human-like timing and motion while recording video.</p>
+        </div>
+        <div class="step-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Get a WebM video</h3>
+          <p>The output is a standard video file you can embed in docs, READMEs, presentations, or marketing pages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GETTING STARTED -->
+  <section class="section" id="getting-started">
+    <div class="container">
+      <h2 class="section-title">Getting started</h2>
+      <div class="steps-grid" style="grid-template-columns: 1fr;">
+        <div>
+          <h3>Requirements</h3>
+          <p>Node.js 18+</p>
+
+          <h3 class="mt-lg">Install</h3>
+          <pre class="code code-dark"><span class="t-prompt">$</span> npm install -g reenact</pre>
+
+          <h3 class="mt-lg">Your first recording</h3>
+          <p>Create <code>demo.yaml</code>:</p>
+          <pre class="code code-dark"><span class="c-key">url:</span> https://example.com
+<span class="c-key">steps:</span>
+  - <span class="c-key">wait:</span> 1s
+  - <span class="c-key">click:</span> <span class="c-str">"h1"</span>
+  - <span class="c-key">scroll:</span> down</pre>
+          <p style="margin-top: 1rem;">Run it:</p>
+          <pre class="code code-dark"><span class="t-prompt">$</span> reenact demo.yaml -o demo.webm</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLES -->
+  <section class="section" id="examples">
+    <div class="container">
+      <h2 class="section-title">Examples</h2>
+      <p class="section-sub">Copy any of these, swap the URLs and selectors for your app, and run.</p>
+
+      <div class="example">
+        <div class="example-header">
+          <h3>Login flow</h3>
+          <span class="example-tag">Form interaction</span>
+        </div>
+        <div class="example-video">
+          <video autoplay loop muted playsinline>
+            <source src="videos/login_flow.webm" type="video/webm">
+          </video>
+        </div>
+        <details class="example-details">
+          <summary>View YAML script</summary>
+          <pre class="code"><span class="c-comment"># Record a realistic login interaction</span>
+<span class="c-key">name:</span> Login Flow
+<span class="c-key">url:</span> https://the-internet.herokuapp.com/login
+<span class="c-key">viewport:</span>
+  <span class="c-key">width:</span> <span class="c-num">1280</span>
+  <span class="c-key">height:</span> <span class="c-num">720</span>
+
+<span class="c-key">steps:</span>
+  - <span class="c-key">wait:</span> 1s
+
+  <span class="c-comment"># Type credentials naturally</span>
+  - <span class="c-key">type:</span>
+      <span class="c-key">selector:</span> <span class="c-str">"#username"</span>
+      <span class="c-key">text:</span> <span class="c-str">"tomsmith"</span>
+      <span class="c-key">wpm:</span> <span class="c-num">65</span>
+
+  - <span class="c-key">wait:</span> 300ms
+
+  - <span class="c-key">type:</span>
+      <span class="c-key">selector:</span> <span class="c-str">"#password"</span>
+      <span class="c-key">text:</span> <span class="c-str">"SuperSecretPassword!"</span>
+      <span class="c-key">wpm:</span> <span class="c-num">55</span>
+
+  - <span class="c-key">wait:</span> 500ms
+  - <span class="c-key">click:</span> <span class="c-str">"button[type='submit']"</span>
+  - <span class="c-key">wait:</span> 2s
+  - <span class="c-key">scroll:</span> down</pre>
+        </details>
+      </div>
+
+      <div class="example">
+        <div class="example-header">
+          <h3>Wikipedia search</h3>
+          <span class="example-tag">Type + navigate</span>
+        </div>
+        <div class="example-video">
+          <video autoplay loop muted playsinline>
+            <source src="videos/wikipedia_search.webm" type="video/webm">
+          </video>
+        </div>
+        <details class="example-details">
+          <summary>View YAML script</summary>
+          <pre class="code"><span class="c-comment"># Search Wikipedia and browse a result</span>
+<span class="c-key">name:</span> Wikipedia Search
+<span class="c-key">url:</span> https://en.wikipedia.org
+<span class="c-key">viewport:</span>
+  <span class="c-key">width:</span> <span class="c-num">1280</span>
+  <span class="c-key">height:</span> <span class="c-num">800</span>
+
+<span class="c-key">steps:</span>
+  - <span class="c-key">wait:</span> 1s
+
+  <span class="c-comment"># Type a search query</span>
+  - <span class="c-key">type:</span>
+      <span class="c-key">selector:</span> <span class="c-str">"#searchInput"</span>
+      <span class="c-key">text:</span> <span class="c-str">"bezier curve"</span>
+      <span class="c-key">wpm:</span> <span class="c-num">60</span>
+
+  - <span class="c-key">wait:</span> 600ms
+  - <span class="c-key">click:</span> <span class="c-str">".cdx-search-input__end-button"</span>
+  - <span class="c-key">wait:</span> 2s
+
+  <span class="c-comment"># Scroll through the article</span>
+  - <span class="c-key">scroll:</span> down
+  - <span class="c-key">wait:</span> 800ms
+  - <span class="c-key">scroll:</span> down
+  - <span class="c-key">wait:</span> 800ms
+  - <span class="c-key">scroll:</span> down
+  - <span class="c-key">wait:</span> 1s</pre>
+        </details>
+      </div>
+
+      <div class="example">
+        <div class="example-header">
+          <h3>WebGL / Three.js</h3>
+          <span class="example-tag">3D + mouse movement</span>
+        </div>
+        <div class="example-video">
+          <video autoplay loop muted playsinline>
+            <source src="videos/webgl_threejs.webm" type="video/webm">
+          </video>
+        </div>
+        <details class="example-details">
+          <summary>View YAML script</summary>
+          <pre class="code"><span class="c-comment"># Record a WebGL Three.js demo</span>
+<span class="c-key">name:</span> WebGL Demo
+<span class="c-key">url:</span> https://threejs.org/examples/#webgl_animation_keyframes
+<span class="c-key">viewport:</span>
+  <span class="c-key">width:</span> <span class="c-num">1280</span>
+  <span class="c-key">height:</span> <span class="c-num">720</span>
+
+<span class="c-key">steps:</span>
+  - <span class="c-key">wait:</span> 3s
+
+  <span class="c-comment"># Move mouse around the 3D scene</span>
+  - <span class="c-key">move_to:</span>
+      <span class="c-key">x:</span> <span class="c-num">640</span>
+      <span class="c-key">y:</span> <span class="c-num">360</span>
+      <span class="c-key">duration:</span> <span class="c-num">500</span>
+  - <span class="c-key">wait:</span> 500ms
+  - <span class="c-key">move_to:</span>
+      <span class="c-key">x:</span> <span class="c-num">800</span>
+      <span class="c-key">y:</span> <span class="c-num">300</span>
+      <span class="c-key">duration:</span> <span class="c-num">600</span>
+  - <span class="c-key">wait:</span> 500ms
+  - <span class="c-key">move_to:</span>
+      <span class="c-key">x:</span> <span class="c-num">400</span>
+      <span class="c-key">y:</span> <span class="c-num">400</span>
+      <span class="c-key">duration:</span> <span class="c-num">600</span>
+  - <span class="c-key">wait:</span> 1s
+
+  <span class="c-comment"># Scroll to zoom</span>
+  - <span class="c-key">scroll:</span> down
+  - <span class="c-key">wait:</span> 500ms
+  - <span class="c-key">scroll:</span> up
+  - <span class="c-key">wait:</span> 1s</pre>
+        </details>
+      </div>
+
+      <div class="example">
+        <div class="example-header">
+          <h3>Basic navigation</h3>
+          <span class="example-tag">Scroll</span>
+        </div>
+        <div class="example-video">
+          <video autoplay loop muted playsinline>
+            <source src="videos/basic.webm" type="video/webm">
+          </video>
+        </div>
+        <details class="example-details">
+          <summary>View YAML script</summary>
+          <pre class="code"><span class="c-comment"># Minimal example: visit a page, scroll around</span>
+<span class="c-key">name:</span> Basic Navigation
+<span class="c-key">url:</span> https://example.com
+<span class="c-key">viewport:</span>
+  <span class="c-key">width:</span> <span class="c-num">1280</span>
+  <span class="c-key">height:</span> <span class="c-num">720</span>
+
+<span class="c-key">steps:</span>
+  - <span class="c-key">wait:</span> 1s
+  - <span class="c-key">scroll:</span> down
+  - <span class="c-key">wait:</span> 500ms
+  - <span class="c-key">scroll:</span> up
+  - <span class="c-key">wait:</span> 1s</pre>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACTION REFERENCE -->
+  <section class="section section-alt" id="actions">
+    <div class="container">
+      <h2 class="section-title">Action reference</h2>
+      <p class="section-sub">Every step you can use in a script.</p>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>click</h4>
+          <code class="ref-usage">- click: "#btn"</code>
+          <p>Smooth mouse move to element, then click at a random point within its bounds.</p>
+        </div>
+        <div class="ref-card">
+          <h4>type</h4>
+          <code class="ref-usage">- type:
+    selector: "#input"
+    text: "hello"
+    wpm: 70</code>
+          <p>Type character by character at natural speed. <code>wpm</code> controls pace (default 70).</p>
+        </div>
+        <div class="ref-card">
+          <h4>hover</h4>
+          <code class="ref-usage">- hover: ".menu-item"</code>
+          <p>Move the cursor over an element without clicking. Great for tooltips and menus.</p>
+        </div>
+        <div class="ref-card">
+          <h4>scroll</h4>
+          <code class="ref-usage">- scroll: down
+- scroll:
+    direction: up
+    amount: 500</code>
+          <p>Smooth incremental scroll. Direction is <code>up</code> or <code>down</code>, amount in pixels (default 300).</p>
+        </div>
+        <div class="ref-card">
+          <h4>wait</h4>
+          <code class="ref-usage">- wait: 2s
+- wait: "#loaded"</code>
+          <p>Pause for a duration (<code>ms</code>, <code>s</code>, <code>m</code>) or wait until a selector appears.</p>
+        </div>
+        <div class="ref-card">
+          <h4>wait_for</h4>
+          <code class="ref-usage">- wait_for:
+    selector: ".modal"
+    state: visible
+    timeout: 10s</code>
+          <p>Wait for an element to reach a state: <code>visible</code>, <code>attached</code>, <code>hidden</code>, <code>detached</code>.</p>
+        </div>
+        <div class="ref-card">
+          <h4>navigate / goto</h4>
+          <code class="ref-usage">- navigate: https://example.com</code>
+          <p>Navigate to a new URL. Waits for DOM content to load.</p>
+        </div>
+        <div class="ref-card">
+          <h4>key / press</h4>
+          <code class="ref-usage">- key: Enter
+- key: Control+A</code>
+          <p>Press a keyboard key or combination.</p>
+        </div>
+        <div class="ref-card">
+          <h4>fill</h4>
+          <code class="ref-usage">- fill:
+    selector: "#bio"
+    text: "long content..."</code>
+          <p>Instantly fill a field (non-humanized). Use for long text where typing would be slow.</p>
+        </div>
+        <div class="ref-card">
+          <h4>select</h4>
+          <code class="ref-usage">- select:
+    selector: "#country"
+    value: "US"</code>
+          <p>Choose a value from a <code>&lt;select&gt;</code> dropdown.</p>
+        </div>
+        <div class="ref-card">
+          <h4>clear</h4>
+          <code class="ref-usage">- clear: "#search"</code>
+          <p>Clear the contents of an input field.</p>
+        </div>
+        <div class="ref-card">
+          <h4>screenshot</h4>
+          <code class="ref-usage">- screenshot: output.png</code>
+          <p>Capture a screenshot mid-recording. Useful for debugging or docs.</p>
+        </div>
+        <div class="ref-card">
+          <h4>back / forward / reload</h4>
+          <code class="ref-usage">- back
+- forward
+- reload</code>
+          <p>Browser history navigation and page reload.</p>
+        </div>
+        <div class="ref-card">
+          <h4>move_to</h4>
+          <code class="ref-usage">- move_to:
+    x: 500
+    y: 300
+    duration: 600</code>
+          <p>Move cursor to exact coordinates with smooth bezier motion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCRIPT OPTIONS -->
+  <section class="section" id="options">
+    <div class="container">
+      <h2 class="section-title">Script options</h2>
+      <p class="section-sub">Top-level YAML keys that configure the recording environment.</p>
+      <div class="options-table-wrap">
+        <table class="options-table">
+          <thead>
+            <tr><th>Key</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>url</code></td><td>—</td><td>Starting URL to navigate to before steps begin</td></tr>
+            <tr><td><code>viewport.width</code></td><td><code>1920</code></td><td>Browser viewport width in pixels</td></tr>
+            <tr><td><code>viewport.height</code></td><td><code>1080</code></td><td>Browser viewport height in pixels</td></tr>
+            <tr><td><code>color_scheme</code></td><td><code>no-preference</code></td><td><code>light</code>, <code>dark</code>, or <code>no-preference</code></td></tr>
+            <tr><td><code>locale</code></td><td><code>en-US</code></td><td>Browser locale string</td></tr>
+            <tr><td><code>user_agent</code></td><td>Chromium default</td><td>Custom user-agent string</td></tr>
+            <tr><td><code>ignore_https_errors</code></td><td><code>false</code></td><td>Skip TLS certificate validation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="mt-lg">CLI flags</h3>
+      <div class="options-table-wrap">
+        <table class="options-table">
+          <thead>
+            <tr><th>Flag</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>-o, --output &lt;path&gt;</code></td><td>Output video path. Defaults to <code>&lt;script&gt;.webm</code></td></tr>
+            <tr><td><code>--headed</code></td><td>Show the browser window while recording</td></tr>
+            <tr><td><code>--slow-mo &lt;ms&gt;</code></td><td>Add extra delay to every Playwright action</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-cta">
+    <div class="container">
+      <h2>Start recording in 30 seconds.</h2>
+      <div class="cta-steps">
+        <pre class="code code-dark"><span class="c-comment"># 1. Create a script</span>
+<span class="t-prompt">$</span> cat &gt; demo.yaml &lt;&lt;EOF
+<span class="c-key">url:</span> https://your-app.com
+<span class="c-key">steps:</span>
+  - <span class="c-key">wait:</span> 1s
+  - <span class="c-key">click:</span> <span class="c-str">".get-started"</span>
+  - <span class="c-key">wait:</span> 2s
+EOF
+
+<span class="c-comment"># 2. Record it</span>
+<span class="t-prompt">$</span> reenact demo.yaml -o demo.webm
+
+<span class="c-comment"># 3. That's it. You have a video.</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="logo"><span class="logo-icon">&#9654;</span> reenact</span>
+      <span class="footer-text">MIT License</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

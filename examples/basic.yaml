@@ -1,0 +1,13 @@
+# Minimal example: visit a page, interact, scroll
+name: Basic Navigation
+url: https://example.com
+viewport:
+  width: 1280
+  height: 720
+
+steps:
+  - wait: 1s
+  - scroll: down
+  - wait: 500ms
+  - scroll: up
+  - wait: 1s

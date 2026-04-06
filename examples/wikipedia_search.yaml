@@ -1,0 +1,27 @@
+# Search Wikipedia and browse a result
+name: Wikipedia Search
+url: https://en.wikipedia.org
+viewport:
+  width: 1280
+  height: 800
+
+steps:
+  - wait: 1s
+
+  # Type a search query
+  - type:
+      selector: "#searchInput"
+      text: "bezier curve"
+      wpm: 60
+
+  - wait: 600ms
+  - click: ".cdx-search-input__end-button"
+  - wait: 2s
+
+  # Scroll through the article
+  - scroll: down
+  - wait: 800ms
+  - scroll: down
+  - wait: 800ms
+  - scroll: down
+  - wait: 1s

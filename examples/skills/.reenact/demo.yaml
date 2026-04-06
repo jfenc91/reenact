@@ -1,0 +1,71 @@
+# .reenact/demo.yaml
+#
+# Convention file: place this in your repository at `.reenact/demo.yaml`
+# (or `reenact.yaml` at the repo root) so that PR demo automation can
+# find a pre-authored script instead of generating one dynamically.
+#
+# This file describes how to visually demonstrate the UI changes in your
+# project. The reenact tool will open a browser, follow these steps, and
+# record a video.
+#
+# Top-level keys:
+#   name       - Human-readable name shown in logs
+#   url        - Starting URL (use localhost if running a dev server)
+#   viewport   - Browser viewport dimensions
+#   steps      - Ordered list of actions to perform
+#
+# You can use environment variables in the url field by having the
+# calling script substitute them before invoking reenact.
+#
+# Available actions:
+#   navigate / goto  - Navigate to a URL
+#   click            - Click an element (CSS selector)
+#   double_click     - Double-click an element
+#   right_click      - Right-click an element
+#   type             - Type text into an element (with human-like speed)
+#   fill             - Instantly fill a form field
+#   hover            - Hover over an element
+#   scroll           - Scroll up or down
+#   wait             - Wait for a duration or a CSS selector to appear
+#   wait_for         - Wait for an element with state/timeout options
+#   select           - Select a dropdown option
+#   key / press      - Press a keyboard key
+#   screenshot       - Take a screenshot to a file
+#   move_to          - Move the cursor to specific x,y coordinates
+#   back / forward   - Browser history navigation
+#   reload           - Reload the current page
+#   clear            - Clear a form field
+
+name: "PR Demo"
+url: "http://localhost:3000"
+viewport:
+  width: 1280
+  height: 720
+
+steps:
+  # Wait for the app to be ready
+  - wait: 1s
+
+  # Navigate to the feature being demonstrated
+  - click: "nav a[href='/dashboard']"
+  - wait: 1s
+
+  # Interact with the changed UI elements
+  - click: "#new-feature-button"
+  - wait: 500ms
+
+  # Fill in a form if applicable
+  - type:
+      selector: "#input-field"
+      text: "Example input"
+      wpm: 65
+
+  - wait: 300ms
+
+  # Submit and show the result
+  - click: "button[type='submit']"
+  - wait: 2s
+
+  # Scroll to show the full result
+  - scroll: down
+  - wait: 1s

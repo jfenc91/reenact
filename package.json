@@ -1,0 +1,38 @@
+{
+  "name": "reenact",
+  "version": "0.1.0",
+  "description": "Create videos of web UI navigation from YAML scripts",
+  "type": "module",
+  "bin": {
+    "reenact": "dist/cli.cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "esbuild src/cli.ts --bundle --platform=node --format=cjs --outfile=dist/cli.cjs --external:playwright",
+    "dev": "node --import tsx src/cli.ts",
+    "postinstall": "playwright install chromium",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "keywords": [
+    "video",
+    "ui",
+    "browser",
+    "automation",
+    "recording",
+    "playwright"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^14.0.3",
+    "playwright": "^1.59.1",
+    "yaml": "^2.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "esbuild": "^0.28.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}

@@ -1,0 +1,32 @@
+# Record a WebGL Three.js demo
+name: WebGL Demo
+url: https://threejs.org/examples/#webgl_animation_keyframes
+viewport:
+  width: 1280
+  height: 720
+
+steps:
+  - wait: 3s
+
+  # Move mouse around the 3D scene
+  - move_to:
+      x: 640
+      y: 360
+      duration: 500
+  - wait: 500ms
+  - move_to:
+      x: 800
+      y: 300
+      duration: 600
+  - wait: 500ms
+  - move_to:
+      x: 400
+      y: 400
+      duration: 600
+  - wait: 1s
+
+  # Scroll to zoom
+  - scroll: down
+  - wait: 500ms
+  - scroll: up
+  - wait: 1s

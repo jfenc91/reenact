@@ -1,0 +1,34 @@
+# Example: a typical login flow
+name: Login Flow Demo
+url: https://the-internet.herokuapp.com/login
+viewport:
+  width: 1280
+  height: 720
+
+steps:
+  - wait: 1s
+
+  # Type username naturally
+  - type:
+      selector: "#username"
+      text: "tomsmith"
+      wpm: 65
+
+  - wait: 300ms
+
+  # Type password
+  - type:
+      selector: "#password"
+      text: "SuperSecretPassword!"
+      wpm: 55
+
+  - wait: 500ms
+
+  # Click login
+  - click: "button[type='submit']"
+
+  - wait: 2s
+
+  # Scroll to see the result
+  - scroll: down
+  - wait: 1s
