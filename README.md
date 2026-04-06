@@ -3,7 +3,7 @@
 
 # reenact
 
-Create videos of human-like web UI navigation from YAML scripts.
+Auto-generate demo videos for code changes, new features, and PRs from simple YAML scripts.
 
 [Website](https://jfenc91.github.io/reenact/)
 

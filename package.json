@@ -1,7 +1,7 @@
 {
   "name": "@jfenc91/reenact",
   "version": "0.1.0",
-  "description": "Create videos of web UI navigation from YAML scripts",
+  "description": "Auto-generate demo videos for code changes and PRs from YAML scripts",
   "type": "module",
   "bin": {
     "reenact": "dist/cli.cjs"
