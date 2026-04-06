@@ -3,7 +3,7 @@
 
 # reenact
 
-Auto-generate demo videos for code changes, new features, and PRs from simple YAML scripts.
+A CLI tool that records browser videos from YAML scripts. Built for AI agents that need to generate demo videos of UI changes.
 
 [Website](https://jfenc91.github.io/reenact/)
 

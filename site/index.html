@@ -35,11 +35,12 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">Open source CLI tool</div>
-    <h1>Demo videos for<br>every <em>code change</em>.</h1>
+    <div class="hero-badge">CLI tool for AI agents</div>
+    <h1>The video recorder<br>your <em>AI agent</em> calls.</h1>
     <p class="hero-sub">
-      Define UI flows in YAML. Generate demo videos automatically — from CI pipelines, AI agents,
-      or on every PR. No screen recording, no editing, no manual work.
+      A CLI that takes a YAML script and outputs a browser recording. Designed to be called by
+      AI agents that need to generate demo videos of UI changes — not a full platform, just the
+      sharp tool that does one thing well.
     </p>
     <div class="hero-actions">
       <div class="install-cmd" onclick="navigator.clipboard.writeText('npm install -g @jfenc91/reenact')">
@@ -73,17 +74,17 @@
   <section class="section" id="features">
     <div class="container">
       <h2 class="section-title">Why reenact?</h2>
-      <p class="section-sub">Screenshots go stale. Screen recordings take manual effort. reenact generates demo videos <strong>automatically</strong> from code.</p>
+      <p class="section-sub">Your AI agent can read a diff and write a YAML script. reenact turns that script into a <strong>real browser recording</strong>.</p>
       <div class="feature-grid">
         <div class="feature-card">
           <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 0 0-4-4z"/><path d="M10 18h4"/><path d="M10 22h4"/></svg></div>
-          <h3>AI agent friendly</h3>
-          <p>YAML scripts are easy for AI agents to generate. Let Claude, GPT, or any LLM create demo recordings from diffs, PRs, or feature descriptions.</p>
+          <h3>Built for AI agents</h3>
+          <p>YAML in, video out. The format is trivial for any LLM to generate — your agent reads the diff, writes the script, calls the CLI.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 01-4 4H3"/></svg></div>
-          <h3>CI/CD ready</h3>
-          <p>Run in GitHub Actions, GitLab CI, or any pipeline. Auto-generate demo videos on every PR and post them as comments.</p>
+          <h3>Just a CLI</h3>
+          <p>No platform, no dashboard, no account. One binary, one command: <code>reenact&nbsp;script.yaml&nbsp;-o&nbsp;video.mp4</code>. Pipe it into whatever workflow you want.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><circle cx="12" cy="10" r="2"/><path d="M7 10l3 0"/><path d="M14 10l3 0"/></svg></div>
@@ -102,8 +103,8 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg></div>
-          <h3>Ship to PRs</h3>
-          <p>Drop a <code>.reenact/demo.yaml</code> in your repo. Every PR gets a video showing the change — automatically.</p>
+          <h3>Composable</h3>
+          <p>Pipe into <code>gh pr comment</code>, attach to Slack, embed in docs. reenact makes the video — you decide where it goes.</p>
         </div>
       </div>
     </div>
@@ -116,20 +117,20 @@
       <div class="steps-grid">
         <div class="step">
           <div class="step-num">1</div>
-          <h3>Define or generate a script</h3>
-          <p>Write YAML by hand, or let an AI agent generate it from a PR diff, feature spec, or bug report.</p>
+          <h3>Agent writes a YAML script</h3>
+          <p>Your AI agent reads the code change and generates a YAML script describing how to demo it.</p>
         </div>
         <div class="step-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
         <div class="step">
           <div class="step-num">2</div>
-          <h3>reenact records it</h3>
-          <p>Headless Chromium executes every step with realistic mouse movement and typing while recording video.</p>
+          <h3>Agent calls <code>reenact</code></h3>
+          <p>One shell command. Headless Chromium runs the steps and records a video with realistic interactions.</p>
         </div>
         <div class="step-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
         <div class="step">
           <div class="step-num">3</div>
-          <h3>Share the video</h3>
-          <p>Post to PRs, embed in docs, attach to tickets. WebM or MP4 — works everywhere.</p>
+          <h3>Agent posts the video</h3>
+          <p>The agent takes the output file and posts it wherever it needs to go — PRs, Slack, docs, tickets.</p>
         </div>
       </div>
     </div>
@@ -470,7 +471,7 @@
   <!-- CTA -->
   <section class="section section-cta">
     <div class="container">
-      <h2>Demo videos on autopilot.</h2>
+      <h2>Give your agent a video recorder.</h2>
       <div class="cta-steps">
         <pre class="code code-dark"><span class="c-comment"># 1. Create a script</span>
 <span class="t-prompt">$</span> cat &gt; demo.yaml &lt;&lt;EOF

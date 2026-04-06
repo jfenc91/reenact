@@ -1,7 +1,7 @@
 {
   "name": "@jfenc91/reenact",
   "version": "0.1.0",
-  "description": "Auto-generate demo videos for code changes and PRs from YAML scripts",
+  "description": "CLI tool for AI agents to record browser demo videos from YAML scripts",
   "type": "module",
   "bin": {
     "reenact": "dist/cli.cjs"
