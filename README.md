@@ -1,4 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@jfenc91/reenact)](https://www.npmjs.com/package/@jfenc91/reenact)
 
 # reenact
 
@@ -9,7 +10,7 @@ Create videos of human-like web UI navigation from YAML scripts.
 ## Install
 
 ```bash
-npm install -g reenact
+npm install -g @jfenc91/reenact
 ```
 
 Chromium is downloaded automatically on install (~200MB). If needed, run manually:
